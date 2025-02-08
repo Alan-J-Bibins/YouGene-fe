@@ -8,6 +8,7 @@ import {
 import type { LinksFunction } from '@remix-run/node';
 
 import './tailwind.css';
+import Sidebar from './components/Sidebar';
 
 export const links: LinksFunction = () => [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -31,11 +32,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     name="viewport"
                     content="width=device-width, initial-scale=1"
                 />
+
+
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+                <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Gugi&display=swap" rel="stylesheet" />
+
                 <Meta />
                 <Links />
             </head>
-            <body>
-                {children}
+            <body className='font-[Fredoka] bg-backgroundGradient p-7'>
+                <div className='h-screen flex justify-between gap-4'>
+                    <Sidebar />
+                    <main className='w-full border border-grey/20 p-8 rounded-xl flex-1 overflow-auto'>
+                        {children}
+                    </main>
+                </div>
                 <ScrollRestoration />
                 <Scripts />
             </body>
