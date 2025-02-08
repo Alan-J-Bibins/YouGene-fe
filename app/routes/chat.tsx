@@ -1,8 +1,8 @@
-import { FileClock, FileInput, FolderUp } from "lucide-react";
+import { FileInput, FolderUp } from "lucide-react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone-esm";
 
-export default async function Page() {
+export default function Page() {
 
     const [file, setFile] = useState<File>();
     const symptoms = ['Headache', 'Throat Pain', 'Chest Swelling']
@@ -71,19 +71,23 @@ export default async function Page() {
                         <h4 className="text-xl">John Doe</h4>
                     </div>
                     <div className="flex gap-4 items-center">
+                        {file && (
+                        <p>{file.name}</p>
+                        )}
                         <form onSubmit={handleSubmit}>
                             {file && (
-                                <div className="flex justify-between gap-4 items-center w-full">
-                                    <div>
-                                        <p>{file.name}</p>
-                                        <button type="submit" className="bg-white/5">
-                                            <FileInput size={20} />
-                                            Submit
-                                        </button>
-                                    </div>
+                                <div className="flex flex-col justify-center items-center bg-white/5 p-4 h-fit w-fit rounded-xl cursor-pointer
+                                border border-grey/20 hover:border-b-accent hover:border-x-grey/10 hover:border-t-grey/30 
+                                shadow-sm shadow-primary/20 transition-all hover:shadow-primary/20 hover:shadow-2xl">
+                                    <button type="submit" className="flex gap-2 justify-center">
+                                        <FileInput size={20} />
+                                        Submit
+                                    </button>
                                 </div>
                             )}
-                            <Dropzone />
+                            {!file && (
+                                <Dropzone />
+                            )}
                         </form>
                         <p className="text-nowrap text-sm">30 minutes ago</p>
                     </div>
