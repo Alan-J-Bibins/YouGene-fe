@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react";
 import { ChevronRight } from "lucide-react";
 
 export default function PatientBox(
@@ -5,15 +6,17 @@ export default function PatientBox(
         isCompleted,
         symptoms,
         userName,
-        diagnosis
+        diagnosis,
+        href
     }: {
         isCompleted: boolean,
         symptoms: string[],
         userName: string,
-        diagnosis?: string
+        diagnosis?: string,
+        href:string
     }) {
     return (
-        <div className="relative overflow-hidden rounded-xl w-full hover:scale-105 group transition-all">
+        <Link to={href} className="relative overflow-hidden rounded-xl w-full hover:scale-105 group transition-all">
             <div className="border border-grey/20 group-hover:border-primary/40 transition-colors rounded-xl p-4 relative overflow-hidden flex flex-col items-center gap-4 ">
                 {!isCompleted && (
                     <div className="flex justify-between items-center text-sigRed text-xl w-full">
@@ -42,7 +45,7 @@ export default function PatientBox(
                 )}
             </div>
             <div className="bg-primary w-full h-8 absolute bottom-0 blur-3xl group-hover:blur-2xl transition-all" />
-        </div>
+        </Link>
     );
 }
 

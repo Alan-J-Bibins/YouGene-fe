@@ -5,19 +5,23 @@ export default function Page() {
     const patients = [
         {
             symptoms: ["Headache", "Throat Pain", "Chest Swelling"],
-            userName: "John Doe"
+            userName: "John Doe",
+            href: "/chat"
         },
         {
             symptoms: ["Headache", "Throat Pain", "Chest Swelling"],
-            userName: "John Doe"
+            userName: "John Doe",
+            href: "/chat"
         },
         {
             symptoms: ["Headache", "Throat Pain", "Chest Swelling"],
-            userName: "John Doe"
+            userName: "John Doe",
+            href: "/chat"
         },
         {
             symptoms: ["Headache", "Throat Pain", "Chest Swelling"],
-            userName: "John Doe"
+            userName: "John Doe",
+            href: "/chat"
         },
     ];
 
@@ -36,6 +40,7 @@ export default function Page() {
                 {patients.map((patient, index) => {
                     return (
                         <PatientBox
+                            href={patient.href}
                             isCompleted={false}
                             key={index}
                             symptoms={patient.symptoms}
@@ -51,6 +56,7 @@ export default function Page() {
                 {patients.map((patient, index) => {
                     return (
                         <PatientBox
+                            href={patient.href}
                             isCompleted={true}
                             key={index}
                             symptoms={patient.symptoms}

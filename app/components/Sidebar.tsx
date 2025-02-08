@@ -25,8 +25,10 @@ function SidebarItem({href, name, Icon, className}: {name: string, href: string,
     const pathname = useLocation().pathname
     return(
         <Link to={href} className={`text-lg rounded-xl p-4 flex gap-2 items-center bg-transparent ${className} motion-preset-blur-right-md motion-duration-2000 
-            hover:bg-white/10 transition-colors duration-200 text-nowrap border border-transparent hover:border-grey/20
-            ${pathname === href ? 'bg-white/5 border-b-accent border-t-grey/20 border-x-grey/5 shadow-primary/20 shadow-xl' : ''}`}>
+            hover:bg-white/10 transition-all duration-200 text-nowrap border border-transparent hover:border-grey/20
+            ${pathname === href ? 
+                'bg-white/5 border-b-accent border-t-grey/20 border-x-grey/5 shadow-primary/20 shadow-xl text-primary hover:shadow-2xl hover:shadow-primary/20' 
+                : ''}`}>
             <Icon size={24}/>
             <p>{name}</p>
         </Link>
