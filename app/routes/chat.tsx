@@ -5,10 +5,15 @@ import { useDropzone } from "react-dropzone-esm";
 export default function Page() {
 
     const [file, setFile] = useState<File>();
+    const [errors, setErrors] = useState<string[]>([]);
     const symptoms = ['Headache', 'Throat Pain', 'Chest Swelling']
 
     const handleSubmit = async () => {
         const formdata = new FormData();
+        if (!file) {
+            setErrors(prev => [...prev, "File has not been selected"])
+            return;
+        }
         formdata.append('file', file);
         formdata.append('QUERY', symptoms.toString());
         try {
@@ -95,6 +100,18 @@ export default function Page() {
                         <p className="text-nowrap text-sm">30 minutes ago</p>
                     </div>
                 </div>
+                {errors.length > 0 && (
+                    <div className="p-2 bg-red-100/20 border border-red-500">
+                        {errors.map((error, index) => {
+                            return (
+                                <div key={index}>
+                                    <p>{error}</p>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                )}
                 <Symptoms symptoms={symptoms} />
             </div>
             {!file && (
