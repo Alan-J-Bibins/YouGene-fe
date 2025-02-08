@@ -1,4 +1,4 @@
-import { FileInput, FolderUp } from "lucide-react";
+import { FileInput, FolderUp, X } from "lucide-react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone-esm";
 
@@ -72,7 +72,10 @@ export default function Page() {
                     </div>
                     <div className="flex gap-4 items-center">
                         {file && (
-                        <p>{file.name}</p>
+                            <div className="relative">
+                                <p className="p-2">{file.name}</p>
+                                <X size={20} onClick={() => setFile(undefined)} className="bg-grey/20 rounded-full absolute top-0 right-0"/>
+                            </div>
                         )}
                         <form onSubmit={handleSubmit}>
                             {file && (
