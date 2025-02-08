@@ -5,7 +5,7 @@ import { Bolt, BotMessageSquare, LayoutDashboard, LucideIcon } from "lucide-reac
 export default function Sidebar() {
     return (
         <aside className="
-            flex flex-col items-center justify-between
+            flex flex-col items-center justify-between overflow-hidden
             h-full w-fit left-0 top-0 border border-grey/20 py-3 px-2 rounded-xl
             ">
             <div className="border-b border-b-grey/20 p-2">
