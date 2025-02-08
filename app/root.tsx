@@ -9,6 +9,7 @@ import type { LinksFunction } from '@remix-run/node';
 
 import './tailwind.css';
 import Sidebar from './components/Sidebar';
+import LightRay from './components/LightRay';
 
 export const links: LinksFunction = () => [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -41,7 +42,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Meta />
                 <Links />
             </head>
-            <body className='font-[Fredoka] bg-backgroundGradient p-7'>
+            <body className='font-[Fredoka] p-7 overflow-x-hidden'>
+                <LightRay className='absolute -right-10 -top-5 rotate-45'/>
+                <LightRay className='absolute right-40 -top-40 rotate-45'/>
                 <div className='h-screen flex justify-between gap-4'>
                     <Sidebar />
                     <main className='w-full border border-grey/20 p-8 rounded-xl flex-1 overflow-auto'>
