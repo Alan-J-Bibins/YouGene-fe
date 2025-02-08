@@ -74,7 +74,7 @@ export default function Page() {
                         {file && (
                             <div className="relative">
                                 <p className="p-2">{file.name}</p>
-                                <X size={20} onClick={() => setFile(undefined)} className="bg-grey/20 rounded-full absolute top-0 right-0"/>
+                                <X size={20} onClick={() => setFile(undefined)} className="bg-grey/20 rounded-full absolute top-0 right-0" />
                             </div>
                         )}
                         <form onSubmit={handleSubmit}>
@@ -97,10 +97,12 @@ export default function Page() {
                 </div>
                 <Symptoms symptoms={symptoms} />
             </div>
-            <div className="flex flex-col justify-center items-center gap-4 w-full">
-                <FolderUp size={150} className="text-text opacity-40" />
-                <p className="text-xl opacity-40">Upload genomic data to start analysis</p>
-            </div>
+            {!file && (
+                <div className="flex flex-col justify-center items-center gap-4 w-full">
+                    <FolderUp size={150} className="text-text opacity-40" />
+                    <p className="text-xl opacity-40">Upload genomic data to start analysis</p>
+                </div>
+            )}
         </div>
     );
 }
