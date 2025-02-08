@@ -1,22 +1,24 @@
-import { Link } from "@remix-run/react";
-import { ChevronRight } from "lucide-react";
+import { Link } from '@remix-run/react';
+import { ChevronRight } from 'lucide-react';
 
-export default function PatientBox(
-    {
-        isCompleted,
-        symptoms,
-        userName,
-        diagnosis,
-        href
-    }: {
-        isCompleted: boolean,
-        symptoms: string[],
-        userName: string,
-        diagnosis?: string,
-        href:string
-    }) {
+export default function PatientBox({
+    isCompleted,
+    symptoms,
+    userName,
+    diagnosis,
+    href,
+}: {
+    isCompleted: boolean;
+    symptoms: string[];
+    userName: string;
+    diagnosis?: string;
+    href: string;
+}) {
     return (
-        <Link to={href} className="relative overflow-hidden rounded-xl w-full hover:scale-105 group transition-all">
+        <Link
+            to={href}
+            className="relative overflow-hidden rounded-xl w-full hover:scale-105 group transition-all"
+        >
             <div className="border border-grey/20 group-hover:border-primary/40 transition-colors rounded-xl p-4 relative overflow-hidden flex flex-col items-center gap-4 ">
                 {!isCompleted && (
                     <div className="flex justify-between items-center text-sigRed text-xl w-full">
@@ -57,7 +59,10 @@ function Symptoms({ symptoms }: { symptoms: string[] }) {
             <div className="border-grey/20 flex flex-wrap gap-1 items-start justify-start self-stretch">
                 {symptoms.map((symptom, index) => {
                     return (
-                        <div key={index} className="w-fit p-2 rounded-xl border border-grey/20 bg-black/20">
+                        <div
+                            key={index}
+                            className="w-fit p-2 rounded-xl border border-grey/20 bg-black/20"
+                        >
                             {symptom}
                         </div>
                     );

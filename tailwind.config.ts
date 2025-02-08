@@ -23,12 +23,14 @@ export default {
                 secondary: '#924B13',
                 accent: '#FD892E',
                 grey: '#808080',
-                sigRed: '#EB5757'
+                sigRed: '#EB5757',
             },
             backgroundImage: {
-                backgroundGradient: 'radial-gradient(70.71% 70.71% at 50% 50%, #090604 50%, #211C19 100%)',
-                lightRay: 'linear-gradient(146deg, rgba(226, 185, 153, 0.10) 35.25%, rgba(115, 115, 115, 0.00) 64.75%)'
-            }
+                backgroundGradient:
+                    'radial-gradient(70.71% 70.71% at 50% 50%, #090604 50%, #211C19 100%)',
+                lightRay:
+                    'linear-gradient(146deg, rgba(226, 185, 153, 0.10) 35.25%, rgba(115, 115, 115, 0.00) 64.75%)',
+            },
         },
     },
     plugins: [require('tailwindcss-motion')],
