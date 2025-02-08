@@ -5,7 +5,10 @@ import { useDropzone } from "react-dropzone-esm";
 export default function Page() {
 
     const [file, setFile] = useState<File>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isDisabled, setIsDisabled] = useState<boolean>(false);
     const [errors, setErrors] = useState<string[]>([]);
+    const [message, setMessage] = useState<string>('');
     const symptoms = ['Headache', 'Throat Pain', 'Chest Swelling']
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -16,9 +19,11 @@ export default function Page() {
             return;
         }
         formdata.append('file', file);
-        formdata.append('QUERY', symptoms.toString());
+        formdata.append('query', symptoms.toString());
         console.log(formdata);
         try {
+            setIsLoading(true);
+            setIsDisabled(true);
             const response = await fetch('https://seashell-app-mo44g.ondigitalocean.app/process-csv/', {
                 method: 'POST',
                 body: formdata,
@@ -28,15 +33,23 @@ export default function Page() {
                 console.log("wellfuck");
                 return errorData;
             }
-            console.log("Response", response.json())
+            const data = await response.json();
+            console.log("Response", data)
+            console.log("Treatment", data.treatment_plan)
+            setMessage(data.treatment_plan)
+            console.log("Message", message)
         }
         catch (error) {
             console.log(error)
         }
+        finally {
+            setIsLoading(false);
+            setIsDisabled(false);
+        }
     }
 
     function Dropzone() {
-        const { getRootProps, getInputProps, open, isDragActive } = useDropzone({
+        const { getRootProps, getInputProps } = useDropzone({
             onDrop: (incomingFiles) => {
                 console.log(incomingFiles);
                 setFile(incomingFiles[0])
@@ -55,12 +68,10 @@ export default function Page() {
                 <div className={`flex flex-col justify-center items-center bg-white/5 p-4 h-fit w-fit rounded-xl cursor-pointer
                     border border-grey/20 hover:border-b-accent hover:border-x-grey/10 hover:border-t-grey/30 
                     shadow-sm shadow-primary/20 transition-all hover:shadow-primary/20 hover:shadow-2xl`}>
-                    {!file && (
-                        <div className="flex justify-center items-center gap-4">
-                            <FolderUp size={20} className="text-text opacity-40" />
-                            <p className="opacity-40 text-nowrap">Upload genomic data</p>
-                        </div>
-                    )}
+                    <div className="flex justify-center items-center gap-4">
+                        <FolderUp size={20} className="text-text opacity-40" />
+                        <p className="opacity-40 text-nowrap">Upload genomic data</p>
+                    </div>
                 </div>
             </div>
         )
@@ -89,9 +100,16 @@ export default function Page() {
                                 <div className="flex flex-col justify-center items-center bg-white/5 p-4 h-fit w-fit rounded-xl cursor-pointer
                                 border border-grey/20 hover:border-b-accent hover:border-x-grey/10 hover:border-t-grey/30 
                                 shadow-sm shadow-primary/20 transition-all hover:shadow-primary/20 hover:shadow-2xl">
-                                    <button type="submit" className="flex gap-2 justify-center">
-                                        <FileInput size={20} />
-                                        Submit
+                                    <button type="submit" className="flex gap-2 justify-center disabled:opacity-50" disabled={isDisabled}>
+                                        {!isLoading && (
+                                            <>
+                                                <FileInput size={20} />
+                                                Submit
+                                            </>
+                                        )}
+                                        {isLoading && (
+                                            <p>Submitting...</p>
+                                        )}
                                     </button>
                                 </div>
                             )}
@@ -120,6 +138,13 @@ export default function Page() {
                 <div className="flex flex-col justify-center items-center gap-4 w-full">
                     <FolderUp size={150} className="text-text opacity-40" />
                     <p className="text-xl opacity-40">Upload genomic data to start analysis</p>
+                </div>
+            )}
+            {message !== '' && (
+                <div className="p-4 border border-grey/20 rounded-xl motion-preset-blur-down-md bg-white/5">
+                    <p>
+                        {message}
+                    </p>
                 </div>
             )}
         </div>
