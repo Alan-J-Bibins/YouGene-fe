@@ -1,4 +1,5 @@
 import { FileInput, FolderUp, X } from "lucide-react";
+import ReactMarkdown from 'react-markdown';
 import { FormEvent, useState } from "react";
 import { useDropzone } from "react-dropzone-esm";
 
@@ -9,7 +10,7 @@ export default function Page() {
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
     const [errors, setErrors] = useState<string[]>([]);
     const [message, setMessage] = useState<string>('');
-    const symptoms = ['Headache', 'Throat Pain', 'Chest Swelling']
+    const symptoms = ['Lump', 'Skin changes', 'Swelling']
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -142,9 +143,9 @@ export default function Page() {
             )}
             {message !== '' && (
                 <div className="p-4 border border-grey/20 rounded-xl motion-preset-blur-down-md bg-white/5">
-                    <p>
+                    <ReactMarkdown>
                         {message}
-                    </p>
+                    </ReactMarkdown>
                 </div>
             )}
         </div>

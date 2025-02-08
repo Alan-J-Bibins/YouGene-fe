@@ -24,6 +24,7 @@
         "react-dom": "^18.2.0",
         "react-dropzone": "^14.3.5",
         "react-dropzone-esm": "^15.2.0",
+        "react-markdown": "^9.0.3",
         "tailwindcss-motion": "^1.0.1"
     },
     "devDependencies": {
