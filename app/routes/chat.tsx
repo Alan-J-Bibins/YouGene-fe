@@ -1,5 +1,5 @@
 import { FileInput, FolderUp, X } from "lucide-react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useDropzone } from "react-dropzone-esm";
 
 export default function Page() {
@@ -8,7 +8,8 @@ export default function Page() {
     const [errors, setErrors] = useState<string[]>([]);
     const symptoms = ['Headache', 'Throat Pain', 'Chest Swelling']
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         const formdata = new FormData();
         if (!file) {
             setErrors(prev => [...prev, "File has not been selected"])
@@ -16,6 +17,7 @@ export default function Page() {
         }
         formdata.append('file', file);
         formdata.append('QUERY', symptoms.toString());
+        console.log(formdata);
         try {
             const response = await fetch('https://seashell-app-mo44g.ondigitalocean.app/process-csv/', {
                 method: 'POST',
@@ -30,7 +32,6 @@ export default function Page() {
         catch (error) {
             console.log(error)
         }
-        alert(file?.name);
     }
 
     function Dropzone() {
