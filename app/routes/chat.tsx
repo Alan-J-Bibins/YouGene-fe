@@ -28,6 +28,7 @@ export default function Page() {
                 console.log("wellfuck");
                 return errorData;
             }
+            console.log("Response", response.json())
         }
         catch (error) {
             console.log(error)
