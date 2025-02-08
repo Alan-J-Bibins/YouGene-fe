@@ -25,8 +25,8 @@ export default {
                 grey: '#808080',
                 sigRed: '#EB5757'
             },
-            backgroundColor : {
-                backgroundGradient: 'radial-gradient(70.71% 70.71% at 50% 50%, var(--Background, #090604) 50%, #211C19 100%)'
+            backgroundImage : {
+                backgroundGradient: 'radial-gradient(70.71% 70.71% at 50% 50%, #090604 50%, #211C19 100%)'
             }
         },
     },
