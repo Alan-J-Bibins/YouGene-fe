@@ -23,4 +23,16 @@ export default defineConfig({
         }),
         tsconfigPaths(),
     ],
+    optimizeDeps: {
+        include: ['react-dropzone-esm']
+    },
+    server: {
+        fs: {
+            strict: false
+        },
+        middlewareMode: false,
+    },
+    resolve: {
+        dedupe: ['react', 'react-dom'],
+    }
 });
