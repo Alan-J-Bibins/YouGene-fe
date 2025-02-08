@@ -16,7 +16,19 @@ export default {
                     'Noto Color Emoji',
                 ],
             },
+            colors : {
+                text: '#F3F1EF',
+                background: '#090604',
+                primary: '#E2B999',
+                secondary: '#924B13',
+                accent: '#FD892E',
+                grey: '#808080',
+                sigRed: '#EB5757'
+            },
+            backgroundColor : {
+                backgroundGradient: 'radial-gradient(70.71% 70.71% at 50% 50%, var(--Background, #090604) 50%, #211C19 100%)'
+            }
         },
     },
-    plugins: [],
+    plugins: [require('tailwindcss-motion')],
 } satisfies Config;
