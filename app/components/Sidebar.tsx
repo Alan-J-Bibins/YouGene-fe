@@ -39,14 +39,15 @@ function SidebarItem({
     className?: string;
     Icon: LucideIcon;
 }) {
-    const pathname = useLocation().pathname;
+    const pathname = useLocation().pathname.split('/')[1]
+    console.log(pathname)
     return (
         <Link
             to={href}
             className={`text-lg rounded-xl p-4 flex gap-2 items-center bg-transparent ${className} motion-preset-blur-right-md motion-duration-2000 
             hover:bg-white/10 transition-all duration-200 text-nowrap border border-transparent hover:border-grey/20
             ${
-                pathname === href
+                pathname === href.split('/')[1]
                     ? 'bg-white/5 border-b-accent border-t-grey/20 border-x-grey/5 shadow-primary/20 shadow-xl text-primary hover:shadow-2xl hover:shadow-primary/20'
                     : ''
             }`}

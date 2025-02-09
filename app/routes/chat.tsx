@@ -10,7 +10,6 @@ export default function Page() {
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
     const [errors, setErrors] = useState<string[]>([]);
     const [message, setMessage] = useState<string>('');
-    // const symptoms = ['Lump', 'Skin changes', 'Swelling']
     const [symptoms, setSymptoms] = useState<string[]>(['Lump', 'Swelling']);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
