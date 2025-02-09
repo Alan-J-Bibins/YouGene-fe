@@ -48,7 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Meta />
                 <Links />
             </head>
-            <body className="font-[Fredoka] p-7 overflow-x-hidden">
+            <body className="font-[Fredoka] p-7 overflow-x-hidden no-scrollbar">
                 <LightRay className="absolute -right-10 -top-5 rotate-45" />
                 <LightRay className="absolute right-40 -top-40 rotate-45" />
                 <div className="h-screen flex justify-between gap-4">

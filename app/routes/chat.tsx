@@ -2,6 +2,7 @@ import { FileInput, FolderUp, X } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { FormEvent, useState } from 'react';
 import { useDropzone } from 'react-dropzone-esm';
+import SymptomRow from '~/components/SymptomsContainer';
 
 export default function Page() {
     const [file, setFile] = useState<File>();
@@ -10,7 +11,7 @@ export default function Page() {
     const [errors, setErrors] = useState<string[]>([]);
     const [message, setMessage] = useState<string>('');
     // const symptoms = ['Lump', 'Skin changes', 'Swelling']
-    const [symptoms, setSymptoms] = useState<string[]>([]);
+    const [symptoms, setSymptoms] = useState<string[]>(['Lump', 'Swelling']);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -99,7 +100,7 @@ export default function Page() {
                                 <X
                                     size={20}
                                     onClick={() => setFile(undefined)}
-                                    className="bg-grey/20 rounded-full absolute top-0 right-0"
+                                    className="bg-grey/20 rounded-full absolute top-0 right-0 cursor-pointer"
                                 />
                             </div>
                         )}
@@ -141,7 +142,11 @@ export default function Page() {
                         })}
                     </div>
                 )}
-                <Symptoms symptoms={symptoms} />
+                <div className="flex flex-col gap-2 p-2 rounded-xl border border-grey/20 bg-white/5 w-full">
+                    <p>Symptoms</p>
+                    <hr className="border-grey/20" />
+                    <SymptomRow initialSymptoms={symptoms} />
+                </div>
             </div>
             {!file && (
                 <div className="flex flex-col justify-center items-center gap-4 w-full">
@@ -156,27 +161,6 @@ export default function Page() {
                     <ReactMarkdown>{message}</ReactMarkdown>
                 </div>
             )}
-        </div>
-    );
-}
-
-function Symptoms({ symptoms }: { symptoms: string[] }) {
-    return (
-        <div className="flex flex-col gap-2 p-2 rounded-xl border border-grey/20 bg-white/5 w-full">
-            <p>Symptoms</p>
-            <hr className="border-grey/20" />
-            <div className="border-grey/20 flex flex-wrap gap-1 items-start justify-start self-stretch">
-                {symptoms.map((symptom, index) => {
-                    return (
-                        <div
-                            key={index}
-                            className="w-fit p-2 rounded-xl border border-grey/20 bg-black/20"
-                        >
-                            {symptom}
-                        </div>
-                    );
-                })}
-            </div>
         </div>
     );
 }
